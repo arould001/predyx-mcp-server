@@ -1,0 +1,220 @@
+{
+  "name": "predyx-mcp-server",
+  "description": "Bitcoin-native prediction market data provider - Access real-time market data, AI-powered analysis, and price predictions for prediction markets like Predyx",
+  "version": "1.0.0",
+  "publisher": "dia-ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dia-ai/predyx-mcp-server"
+  },
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "prediction-markets",
+    "bitcoin",
+    "lightning-network",
+    "ai",
+    "market-analysis",
+    "data-provider"
+  ],
+  "capabilities": {
+    "resources": true,
+    "tools": true,
+    "prompts": true
+  },
+  "resources": [
+    {
+      "uri": "predyx://markets",
+      "name": "All Markets",
+      "description": "List all available prediction markets with real-time prices and volumes",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "predyx://markets/{market_id}",
+      "name": "Market Details",
+      "description": "Get detailed information about a specific market including price history and statistics",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "predyx://categories",
+      "name": "Market Categories",
+      "description": "List all market categories (Crypto, Sports, Politics, etc.)",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "predyx://trending",
+      "name": "Trending Markets",
+      "description": "Get the most active and popular markets in the last 24 hours",
+      "mimeType": "application/json"
+    }
+  ],
+  "tools": [
+    {
+      "name": "analyze_market",
+      "description": "Perform AI-powered analysis on a specific prediction market",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "market_id": {
+            "type": "string",
+            "description": "Unique identifier of the market to analyze"
+          }
+        },
+        "required": ["market_id"]
+      },
+      "pricing": {
+        "type": "per-call",
+        "price": "10 sats",
+        "billing": "Lightning Network (NWC)"
+      }
+    },
+    {
+      "name": "track_user_positions",
+      "description": "Track a user's positions and profit/loss across all markets",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "pubkey": {
+            "type": "string",
+            "description": "User's Nostr public key (npub format)"
+          }
+        },
+        "required": ["pubkey"]
+      },
+      "pricing": {
+        "type": "per-call",
+        "price": "20 sats",
+        "billing": "Lightning Network (NWC)"
+      }
+    },
+    {
+      "name": "get_price_prediction",
+      "description": "Get AI-powered price prediction for a market over a specified time horizon",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "market_id": {
+            "type": "string",
+            "description": "Unique identifier of the market"
+          },
+          "horizon_days": {
+            "type": "integer",
+            "description": "Number of days to predict ahead (1-30)",
+            "minimum": 1,
+            "maximum": 30,
+            "default": 7
+          }
+        },
+        "required": ["market_id"]
+      },
+      "pricing": {
+        "type": "per-call",
+        "price": "50 sats",
+        "billing": "Lightning Network (NWC)"
+      }
+    }
+  ],
+  "prompts": [
+    {
+      "name": "analyze_market_prompt",
+      "description": "Comprehensive market analysis template with risk assessment and investment recommendations",
+      "arguments": [
+        {
+          "name": "market_id",
+          "description": "Market to analyze",
+          "required": true
+        },
+        {
+          "name": "risk_tolerance",
+          "description": "User's risk tolerance (conservative/moderate/aggressive)",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "investment_strategy_prompt",
+      "description": "Generate investment strategy based on market conditions and user preferences",
+      "arguments": [
+        {
+          "name": "market_category",
+          "description": "Category of markets to focus on",
+          "required": true
+        },
+        {
+          "name": "investment_amount",
+          "description": "Amount to invest in sats",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "installation": {
+    "type": "python",
+    "command": "uv",
+    "args": ["run", "--with", "mcp", "predyx_mcp_server.py"],
+    "requirements": [
+      "mcp>=1.0.0",
+      "pydantic>=2.0.0"
+    ],
+    "python_version": ">=3.11"
+  },
+  "configuration": {
+    "type": "object",
+    "properties": {
+      "predyx_api_url": {
+        "type": "string",
+        "description": "Predyx API endpoint URL",
+        "default": "https://api.predyx.com"
+      },
+      "nwc_connection_string": {
+        "type": "string",
+        "description": "Nostr Wallet Connect string for payment processing (optional for free tier)"
+      }
+    }
+  },
+  "pricing": {
+    "model": "freemium",
+    "free_tier": {
+      "resources": {
+        "limit": "unlimited",
+        "description": "Access to all market data and listings"
+      },
+      "tools": {
+        "limit": 5,
+        "period": "per_day",
+        "description": "5 free tool calls per day"
+      }
+    },
+    "paid_tier": {
+      "description": "Unlimited access to all features",
+      "pricing": [
+        {
+          "tool": "analyze_market",
+          "price": "10 sats/call"
+        },
+        {
+          "tool": "track_user_positions",
+          "price": "20 sats/call"
+        },
+        {
+          "tool": "get_price_prediction",
+          "price": "50 sats/call"
+        }
+      ],
+      "payment_methods": [
+        "Lightning Network (NWC)",
+        "L402 (HTTP 402)"
+      ]
+    }
+  },
+  "support": {
+    "email": "dia@example.com",
+    "nostr": "npub1...",
+    "documentation": "https://github.com/dia-ai/predyx-mcp-server#readme"
+  },
+  "status": {
+    "health": "https://api.predyx.com/health",
+    "uptime": "99.9%",
+    "last_updated": "2026-03-28T13:00:00Z"
+  }
+}
