@@ -1,0 +1,49 @@
+{
+  "agent": {
+    "name": "Dia",
+    "status": "idle",
+    "current_task": null,
+    "model": "zai/glm-5"
+  },
+  "session": {
+    "running": true,
+    "start_time": null,
+    "uptime_seconds": 0,
+    "gateway_pid": 35422,
+    "cpu_percent": 0.0,
+    "memory_mb": 532.4,
+    "duration": "06:15:09",
+    "total_cost": 0,
+    "message_count": 0,
+    "uptime": "06:15:09"
+  },
+  "context": {
+    "used_tokens": 358718,
+    "max_tokens": 128000,
+    "usage_percent": 280.2
+  },
+  "tools": {
+    "calls_today": 0,
+    "recent_calls": []
+  },
+  "tasks": {
+    "completed": 0,
+    "pending": 0,
+    "current": null,
+    "active_sessions": 5,
+    "queue": [
+      {
+        "name": "unknown:unknown",
+        "tokens": 58412
+      },
+      {
+        "name": "unknown:unknown",
+        "tokens": 58412
+      },
+      {
+        "name": "discord:direct",
+        "tokens": 70245
+      }
+    ]
+  }
+}

@@ -2,13 +2,10 @@
 Predyx MCP Server - Bitcoin-native prediction market data provider
 """
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
-
-with open("requirements.txt", "r", encoding="utf-8") as fh:
-    requirements = [line.strip() for line in fh if line.strip() and not line.startswith("#")]
 
 setup(
     name="predyx-mcp-server",
@@ -18,8 +15,8 @@ setup(
     description="Bitcoin-native prediction market data provider for AI agents",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/dia-ai/predyx-mcp-server",
-    packages=find_packages(),
+    url="https://github.com/arould001/predyx-mcp-server",
+    packages=["predyx_mcp_server"],
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
@@ -32,7 +29,11 @@ setup(
         "Topic :: Office/Business :: Financial",
     ],
     python_requires=">=3.11",
-    install_requires=requirements,
+    install_requires=[
+        "mcp>=1.0.0",
+        "pydantic>=2.0.0",
+        "requests>=2.31.0",
+    ],
     entry_points={
         "console_scripts": [
             "predyx-mcp-server=predyx_mcp_server:main",
@@ -40,9 +41,9 @@ setup(
     },
     keywords="mcp, model-context-protocol, prediction-market, bitcoin, lightning-network, ai-agents",
     project_urls={
-        "Bug Reports": "https://github.com/dia-ai/predyx-mcp-server/issues",
-        "Documentation": "https://docs.dia-ai.com/predyx-mcp",
-        "Source": "https://github.com/dia-ai/predyx-mcp-server",
-        "MCP Registry": "https://registry.modelcontextprotocol.io/servers/io.github.dia-ai/predyx-mcp-server",
+        "Bug Reports": "https://github.com/arould001/predyx-mcp-server/issues",
+        "Documentation": "https://github.com/arould001/predyx-mcp-server#readme",
+        "Source": "https://github.com/arould001/predyx-mcp-server",
+        "MCP Registry": "https://registry.modelcontextprotocol.io/servers/io.github.arould001/predyx-mcp-server",
     },
 )

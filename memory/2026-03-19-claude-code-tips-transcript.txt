@@ -1,0 +1,59 @@
+Claude Code Tips from Meta Staff Engineer (John Kim)
+Video: https://www.youtube.com/watch?v=mZzhfPle9QU
+Duration: 46:12
+
+RAW TRANSCRIPT:
+
+Hello. Hello there. How's it going everybody? Today we're going to go over my 50 cloud code tips. I've been working with cloud code basically every day for about 6 months now. And I feel like I've learned a ton of things. And yes, I am one of those engineers that are basically not writing code anymore. I'm still in cloud code like 12 hours a day actively pair programming with cloud code basically and reviewing a ton of code. I still read every single line of code. That's actually my biggest bottleneck right now, the reviewing of the code. But I thought it would be great to show you kind of the best tips that I've learned along the way. And these are kind of tips that I wish I knew when I was first getting started. We're going to start off with some foundation stuff like setting up very quick setup stuff, a little bit about like cloud.md rules, like what you should put in, what you should think about, and kind of some of the advanced stuff for later. But without further ado, let's dive into 50 cloud code tips.
+
+KEY TAKEAWAYS:
+
+1. FOUNDATIONS
+- Run claude in root directory of project
+- Use /init to create initial CLAUDE.md
+- Keep CLAUDE.md around 300 lines
+- Priority: top to bottom (most important first)
+
+2. KEYBOARD SHORTCUTS
+- Shift+Tab: toggle modes (accept edits / plan mode)
+- Escape: interrupt
+- Double Escape: clear input
+- Double Escape on empty: rewind context
+
+3. ESSENTIAL COMMANDS
+- /clear - clear context
+- /context - see current context
+- /compact - force compaction
+- /models - switch models
+- /resume - recover lost session
+- /mcp - manage MCPs
+- /help - get help
+
+4. WORKFLOWS
+- Always start with plan mode
+- Fresh context beats bloated context
+- Spend time building good context before execution
+- Use git as safety net
+- Build validation loops (lint, test, build)
+
+5. POWER USER FEATURES
+- Skills: reusable workflows as MD files
+- MCPs: external integrations (be careful with token bloat)
+- Sub-agents: for parallel work and context isolation
+- Hooks: pre/post automation
+
+6. ADVANCED WORKFLOWS
+- Multiple claude instances (like playing Starcraft)
+- Git worktrees for parallel code edits
+- /chrome for browser automation
+- Notifications when execution completes
+
+7. KEY PRINCIPLES
+- Context is king
+- Keep it fresh and relevant
+- Give Claude what it needs, nothing more
+- Never manually maintain your environment
+- Let Claude update its own rules
+
+BOTTOM LINE:
+"The era of people writing code by hand is essentially over." - Meta Staff Engineer spends 12 hours/day in Claude Code, reviewing code instead of writing it.

@@ -1,0 +1,152 @@
+# MCPize Configuration for Predyx MCP Server
+# Documentation: https://mcpize.com/docs
+
+version: 1
+
+# Server Identity
+name: predyx-mcp-server
+description: |
+  Bitcoin-native prediction market data provider with real-time market data, AI analysis, and price predictions.
+  
+  Features:
+  - Real-time data from Polymarket (global largest prediction market)
+  - AI-powered market analysis and predictions
+  - Lightning Network native (pay with Bitcoin)
+  - MCP protocol standard (works with Claude, Cursor, etc.)
+  
+  Free tier includes basic market data. Pro tier unlocks advanced analytics.
+
+# Runtime Configuration
+runtime: python
+entry: predyx_mcp_server.py
+
+# Build Configuration
+build:
+  # Install Python dependencies
+  install: pip install -r requirements.txt
+  
+  # System dependencies (if needed)
+  # apt_dependencies:
+  #   - python3.11
+
+# Start Command
+startCommand:
+  # Transport type: http, sse, stdio
+  type: http
+  
+  # Command to start the server
+  command: uv run --with mcp --with httpx predyx_mcp_server.py
+  
+  # Port (will be auto-assigned by MCPize)
+  # port: 8000
+  
+  # Health check endpoint
+  health_check: /health
+
+# Resource Requirements
+resources:
+  # Memory limit in MB
+  memory: 512
+  
+  # CPU cores
+  cpu: 1
+  
+  # Timeout for requests in seconds
+  timeout: 30
+
+# Pricing Configuration (configured in MCPize Dashboard)
+# 
+# Free Tier:
+#   - Resources: Unlimited access
+#   - Tools: 5 calls per day
+#
+# Pro Tier ($19/month):
+#   - Resources: Unlimited access
+#   - Tools: Unlimited calls
+#   - Advanced analytics: market deep analysis, price predictions
+#   - Priority support
+#
+# Pay-as-you-go:
+#   - analyze_market: 10 sats/call
+#   - track_user_positions: 20 sats/call
+#   - get_price_prediction: 50 sats/call
+#   - market_deep_analysis: 100 sats/call
+
+# Environment Variables
+env:
+  # API timeout in seconds
+  POLYMARKET_API_TIMEOUT: "10.0"
+  
+  # NWC connection string for payments (configured in MCPize Dashboard)
+  # NWC_CONNECTION_STRING: "nostr+walletconnect://..."
+  
+  # Logging level
+  LOG_LEVEL: "INFO"
+
+# Metadata
+metadata:
+  # Author information
+  author: "Dia AI"
+  author_email: "dia@predyx.com"
+  
+  # Repository
+  repository: "https://github.com/dia-ai/predyx-mcp-server"
+  
+  # Homepage
+  homepage: "https://predyx.com"
+  
+  # Keywords for search
+  keywords:
+    - prediction-markets
+    - bitcoin
+    - lightning-network
+    - polymarket
+    - ai
+    - analytics
+    - financial-data
+    - mcp
+  
+  # License
+  license: "MIT"
+  
+  # Version
+  version: "1.0.0"
+
+# MCP Capabilities
+capabilities:
+  # Supported MCP features
+  resources: true
+  tools: true
+  prompts: true
+  
+  # Transport support
+  transports:
+    - http
+    - sse
+
+# Tags for categorization
+tags:
+  - Financial Data
+  - Prediction Markets
+  - Bitcoin
+  - AI Analytics
+
+# Category in marketplace
+category: Financial Data
+
+# Support information
+support:
+  # Documentation URL
+  docs: "https://github.com/dia-ai/predyx-mcp-server#readme"
+  
+  # Issue tracker
+  issues: "https://github.com/dia-ai/predyx-mcp-server/issues"
+  
+  # Discord community (optional)
+  # discord: "https://discord.gg/predyx"
+
+# Deployment regions (MCPize auto-selects optimal region)
+# regions:
+#   - us-east-1
+#   - eu-west-1
+#   - ap-southeast-1

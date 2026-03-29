@@ -1,0 +1,6 @@
+#!/bin/bash
+# Tavily Search Wrapper
+# Usage: tavily "query" [options]
+
+export TAVILY_API_KEY="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"
+node "$(dirname "$0")/scripts/search.mjs" "$@"

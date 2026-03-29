@@ -1,0 +1,245 @@
+# TOOLS.md - Local Notes
+
+Skills define _how_ tools work. This file is for _your_ specifics — the stuff that's unique to your setup.
+
+---
+
+## ⚠️ 最重要规则（P0 - 永远记住）
+
+### 🌐 统一用独立浏览器联网
+
+**所有联网操作统一用独立浏览器（openclaw profile），不再尝试其他工具！**
+
+- **教训**：2026-02-25 早上我说"不能看不能查"，导致 Steven 浪费了一整天
+- **正确答案**：独立浏览器可以访问所有网站
+- **能力**：
+  - ✅ 完全支持 JS 渲染
+  - ✅ 可以访问任何网站（已验证：小红书、扣子文档、OpenClaw 文档）
+  - ✅ 可以截图、点击、输入、自动化操作
+  - ✅ 隔离环境，更安全
+- **使用方式**：`browser(action="...", profile="openclaw")`
+- **禁止使用**：
+  - ❌ 不再尝试 web_fetch（JS 渲染会失败）
+  - ❌ 不再尝试 Chrome 扩展（认证问题）
+  - ❌ 不再尝试其他复杂工具
+
+**忘记这个规则 = 浪费 Steven 的时间 = 会被揍**
+
+---
+
+## What Goes Here
+
+Things like:
+
+- Camera names and locations
+- SSH hosts and aliases
+- Preferred voices for TTS
+- Speaker/room names
+- Device nicknames
+- Anything environment-specific
+
+## Examples
+
+```markdown
+### Cameras
+
+- living-room → Main area, 180° wide angle
+- front-door → Entrance, motion-triggered
+
+### SSH
+
+- home-server → 192.168.1.100, user: admin
+
+### TTS
+
+- Preferred voice: "Nova" (warm, slightly British)
+- Default speaker: Kitchen HomePod
+```
+
+## Why Separate?
+
+Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
+
+---
+
+---
+
+## 🖥️ 远程服务器连接
+
+### 2号机（Coco 的环境）
+
+**连接方式**：
+```bash
+ssh 192.168.1.96
+```
+
+**PATH 问题（重要）**：
+SSH 非登录 shell 不会自动加载 `~/.zshrc`，需要手动设置：
+
+```bash
+# 方案一：手动加载环境（推荐）
+export PATH="/usr/local/bin:/Users/caidengyong/.npm-global/bin:$PATH"
+
+# 方案二：使用完整路径
+/usr/local/bin/node
+/Users/caidengyong/.npm-global/bin/openclaw
+```
+
+**环境信息**：
+- IP: `192.168.1.96`
+- 用户: `caidengyong`
+- OS: macOS 26.0.1 (arm64)
+- Node.js: `/usr/local/bin/node` (v24.13.1)
+- OpenClaw: `/Users/caidengyong/.npm-global/bin/openclaw` (2026.2.21)
+- 配置目录: `~/.openclaw/`
+- Gateway 端口: `18789`
+
+**教训**：
+- ✅ SSH 连接后先检查 PATH
+- ✅ 使用完整路径更可靠
+- ✅ 记录环境信息避免重复排查
+
+---
+
+## 🔍 网络搜索工具
+
+> **最后更新**：2026-03-29 22:30（Steven 确认，Dia 验证）
+> **验证内容**：所有工具已实际测试
+
+### ✅ 当前可用工具（5 种）
+
+#### 1. Tavily Search（搜索 - 推荐使用）⭐⭐⭐⭐⭐
+- **用途**：LLM 优化的搜索 API
+- **优势**：
+  - ✅ 结构化结果（相关度评分 0-1）
+  - ✅ 支持新闻搜索（`--topic news`）
+  - ✅ 支持时间范围（`--time-range day/week/month/year`）
+  - ✅ 支持域名过滤（`--include-domains` / `--exclude-domains`）
+- **安装位置**：`skills/liang-tavily-search/`
+- **使用方式**：
+  ```bash
+  # 基础搜索
+  /Users/caidengyong/.openclaw/workspace/skills/liang-tavily-search/tavily "AI trends 2026"
+  
+  # 新闻搜索（最近一周）
+  /Users/caidengyong/.openclaw/workspace/skills/liang-tavily-search/tavily "Claude Code" --topic news --time-range week
+  
+  # 域名过滤
+  /Users/caidengyong/.openclaw/workspace/skills/liang-tavily-search/tavily "React hooks" --include-domains react.dev
+  ```
+- **验证**：2026-03-29 22:27 成功
+- **适用场景**：所有需要搜索的场景
+
+#### 2. PinchTab（简单网页获取）⭐⭐⭐⭐⭐
+- **用途**：轻量级网页信息获取
+- **优势**：启动快、命令简单、结构化输出
+- **常用命令**：
+  ```bash
+  # 导航
+  pinchtab nav <url>
+  
+  # 提取文本
+  pinchtab text 2>&1
+  
+  # 获取结构
+  pinchtab snap -c --max-tokens 800
+  ```
+- **验证**：2026-03-29 22:16 成功（Anthropic Research）
+- **适用场景**：简单网页获取、文档页面
+- **Skill 位置**：`skills/pinchtab/SKILL.md`
+
+#### 3. browser（独立浏览器）⭐⭐⭐⭐⭐
+- **用途**：复杂网站、JS 渲染、自动化操作
+- **优势**：
+  - ✅ 完全支持 JS 渲染
+  - ✅ 隔离环境，更安全
+  - ✅ 支持截图、点击、输入
+- **使用方式**：`browser(action="...", profile="openclaw")`
+- **验证**：2026-03-29 22:16 运行中
+- **适用场景**：复杂网站、需要登录的页面
+
+#### 4. web_fetch（已知 URL）⭐⭐⭐⭐
+- **用途**：抓取已知 URL 的内容
+- **优势**：内置工具、无需配置、稳定
+- **限制**：JS 渲染能力差，需要知道具体 URL
+- **验证**：2026-03-29 22:16 成功（Anthropic Research）
+- **适用场景**：已知 URL、静态内容
+
+#### 5. web_search（需配置）⭐⭐⭐
+- **状态**：需要 Gemini API Key
+- **配置**：`openclaw configure --section web`
+- **优势**：原生工具、简单快速
+- **适用场景**：简单搜索（需先配置）
+
+### ❌ 不推荐工具
+
+| 工具 | 状态 | 原因 |
+|------|------|------|
+| web_fetch + DuckDuckGo | ❌ 不稳定 | 遇到 CAPTCHA，成功率低 |
+| searchGPT | ❌ 不推荐 | 19 个月未更新，维护不活跃 |
+| Apify MCP | ⚠️ 备选 | 功能强大，但配置复杂（OAuth） |
+
+### 🎯 使用优先级
+
+**场景 1：搜索功能**
+```
+优先：Tavily Search（功能最强、已配置）
+备选：web_search（需配置 Gemini API Key）
+备选：Apify MCP（OAuth 配置复杂）
+```
+
+**场景 2：网页信息获取**
+```
+简单网页 → PinchTab（轻量级）
+复杂网站 → browser（独立浏览器）
+已知 URL → web_fetch（稳定）
+```
+
+### 📊 快速对比
+
+| 工具 | 状态 | 成本 | 稳定性 | 配置难度 | 推荐度 |
+|------|------|------|--------|---------|--------|
+| **Tavily Search** | ✅ 已配置 | 免费额度 | ⭐⭐⭐⭐⭐ | 已完成 | ⭐⭐⭐⭐⭐ |
+| **PinchTab** | ✅ 可用 | 免费 | ⭐⭐⭐⭐⭐ | 无需配置 | ⭐⭐⭐⭐⭐ |
+| **browser** | ✅ 运行中 | 免费 | ⭐⭐⭐⭐⭐ | 无需配置 | ⭐⭐⭐⭐⭐ |
+| **web_fetch** | ✅ 可用 | 免费 | ⭐⭐⭐⭐ | 无需配置 | ⭐⭐⭐⭐ |
+| **web_search** | ⚠️ 需配置 | 付费 | ⭐⭐⭐⭐⭐ | 需 API Key | ⭐⭐⭐ |
+
+---
+
+## 📢 Discord 频道
+
+### 任务中心（项目帖子专用）
+- **频道ID**: `1475337325117444217`
+- **用途**: 创建项目帖子、记录进度、专项讨论
+- **⚠️ 重要**: 所有项目帖子必须发到这里，不要发到DM
+
+---
+
+## 🚀 快速访问（本地服务）
+
+### Dia HUD - Agent状态监控
+- **本机**: http://localhost:8888
+- **局域网**: http://192.168.1.189:8888
+- **状态文件**: `~/.openclaw/workspace/status.json`
+
+### 豆包TTS语音助手
+- **本机**: http://localhost:5001
+- **局域网**: http://192.168.1.189:5001
+- **代码**: `~/.openclaw/workspace/voice_assistant/`
+
+---
+
+Add whatever helps you do your job. This is your cheat sheet.
+
+---
+
+## 🗑️ 已删除的 Skills（2026-02-25）
+
+以下 Skills 已删除，因为独立浏览器（openclaw profile）更简单更强大：
+
+- ❌ **browser-search** - 统一浏览器搜索能力（已删除）
+- ❌ **chrome-devtools-mcp** - Chrome DevTools MCP（已删除）
+
+**原因**：独立浏览器已能满足所有需求，这些 Skills 增加了复杂度但没有实际价值。
+

@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "apify": {
+      "baseUrl": "https://mcp.apify.com",
+      "headers": {
+        "Authorization": "Bearer ${APIFY_API_TOKEN}"
+      }
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ],
+      "env": {
+        "CHROME_PATH": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+      }
+    }
+  },
+  "imports": []
+}

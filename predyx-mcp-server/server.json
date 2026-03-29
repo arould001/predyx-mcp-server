@@ -2,10 +2,10 @@
   "name": "predyx-mcp-server",
   "description": "Bitcoin-native prediction market data provider - Access real-time market data, AI-powered analysis, and price predictions for prediction markets like Predyx",
   "version": "1.0.0",
-  "publisher": "dia-ai",
+  "publisher": "arould001",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dia-ai/predyx-mcp-server"
+    "url": "https://github.com/arould001/predyx-mcp-server"
   },
   "license": "MIT",
   "keywords": [

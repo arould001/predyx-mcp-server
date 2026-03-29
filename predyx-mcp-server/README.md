@@ -1,6 +1,6 @@
 # Predyx MCP Server
 
-<!-- mcp-name: io.github.dia-ai/predyx-mcp-server -->
+<!-- mcp-name: io.github.arould001/predyx-mcp-server -->
 
 > [!NOTE]
 > Bitcoin-native prediction market data provider. Real-time market data, AI-powered analysis, and Lightning Network integration for AI agents.

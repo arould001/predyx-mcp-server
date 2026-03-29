@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小何语音助手</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 90%;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .chat-box {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: #f9f9f9;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+        .user {
+            background: #667eea;
+            color: white;
+            margin-left: auto;
+        }
+        .ai {
+            background: white;
+            border: 1px solid #ddd;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+        input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+        }
+        input:focus { border-color: #667eea; }
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-send {
+            background: #667eea;
+            color: white;
+        }
+        .btn-send:hover { background: #5568d3; }
+        .btn-voice {
+            background: #ff6b6b;
+            color: white;
+            font-size: 20px;
+        }
+        .btn-voice:hover { background: #ee5a5a; }
+        .btn-voice.recording {
+            animation: pulse 1s infinite;
+            background: #ee5a5a;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .status {
+            text-align: center;
+            color: #888;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎙️ 小何语音助手</h1>
+        <p class="subtitle">语音交互 · 小何 2.0 音色</p>
+        
+        <div class="chat-box" id="chatBox"></div>
+        
+        <div class="controls">
+            <input type="text" id="textInput" placeholder="输入文字或点击麦克风说话..." />
+            <button class="btn-voice" id="voiceBtn" title="语音输入">🎤</button>
+            <button class="btn-send" id="sendBtn">发送</button>
+        </div>
+        
+        <p class="status" id="status">点击麦克风开始说话</p>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById('chatBox');
+        const textInput = document.getElementById('textInput');
+        const voiceBtn = document.getElementById('voiceBtn');
+        const sendBtn = document.getElementById('sendBtn');
+        const status = document.getElementById('status');
+        
+        let recognition = null;
+        let isRecording = false;
+        
+        // 添加消息到聊天框
+        function addMessage(text, isUser) {
+            const div = document.createElement('div');
+            div.className = `message ${isUser ? 'user' : 'ai'}`;
+            div.textContent = text;
+            chatBox.appendChild(div);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+        
+        // 发送消息到服务器
+        async function sendMessage(text) {
+            if (!text.trim()) return;
+            
+            addMessage(text, true);
+            textInput.value = '';
+            status.textContent = 'AI 思考中...';
+            
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text })
+                });
+                
+                const data = await response.json();
+                
+                if (data.reply) {
+                    addMessage(data.reply, false);
+                    status.textContent = '正在播放语音...';
+                    
+                    // 播放音频
+                    const audio = new Audio(data.audio_url);
+                    audio.play();
+                    audio.onended = () => {
+                        status.textContent = '点击麦克风开始说话';
+                    };
+                } else {
+                    status.textContent = '出错了：' + (data.error || '未知错误');
+                }
+            } catch (err) {
+                status.textContent = '出错了：' + err.message;
+            }
+        }
+        
+        // 语音识别
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.lang = 'zh-CN';
+            
+            recognition.onstart = () => {
+                isRecording = true;
+                voiceBtn.classList.add('recording');
+                status.textContent = '正在听...请说话';
+            };
+            
+            recognition.onresult = (event) => {
+                const text = event.results[0][0].transcript;
+                sendMessage(text);
+            };
+            
+            recognition.onend = () => {
+                isRecording = false;
+                voiceBtn.classList.remove('recording');
+            };
+            
+            recognition.onerror = (event) => {
+                status.textContent = '语音识别错误：' + event.error;
+                isRecording = false;
+                voiceBtn.classList.remove('recording');
+            };
+            
+            voiceBtn.onclick = () => {
+                if (isRecording) {
+                    recognition.stop();
+                } else {
+                    recognition.start();
+                }
+            };
+        } else {
+            voiceBtn.style.display = 'none';
+            status.textContent = '您的浏览器不支持语音识别，请使用文本输入';
+        }
+        
+        // 发送按钮
+        sendBtn.onclick = () => sendMessage(textInput.value);
+        textInput.onkeypress = (e) => {
+            if (e.key === 'Enter') sendMessage(textInput.value);
+        };
+    </script>
+</body>
+</html>

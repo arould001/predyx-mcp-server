@@ -1,0 +1,86 @@
+[
+  {
+    "authorName": "墓碑科技",
+    "authorHandle": "@mubeitech",
+    "content": "有人用不到6分钟，讲清楚了如何从零开始搭建一个算法交易对冲基金。\n这东西听起来是不是很疯狂？\n过去，这些工具和玩法都掌握在华尔街少数精英手里。\n普通人根本接触不到。\n现在，代码似乎正在把普通人武装起来。\n他们是怎么做到的？\n我们来拆解一下。\n核心流程是，每天晚上收盘后自动跑一遍程序。",
+    "url": "https://x.com/mubeitech/status/2024454576867324288",
+    "date": "2026-02-19T12:02:38.000Z"
+  },
+  {
+    "authorName": "超级个体｜柿子",
+    "authorHandle": "@yaohui12138",
+    "content": "超级个体最缺的是什么？\n\n不是idea，是执行力。\n\n你一个人要干三个人的活：写代码、做设计、搞运营，每天光是重复性任务就能耗掉70%的时间。\n\n剩下的 30% 根本不足以支撑深度思考。\n\n这就是为什么我关注到了有道刚开源的桌面级Agent"LobsterAI"（有道龙虾）。\n\n它不只是聊天 AI，而是能真正落地执行的",
+    "url": "https://x.com/yaohui12138/status/2024424682179744036",
+    "date": "2026-02-19T10:03:50.000Z"
+  },
+  {
+    "authorName": "吕立青_JimmyLv 2𐃏26",
+    "authorHandle": "@Jimmy_JingLv",
+    "content": "【视频】春节放假，我让 AI 管家替我值班——OpenClaw + MiniMax M2.5 实测\n\n手把手教你安装配置 OpenClaw，接入 iMessage 和飞书，让你的手机变成 24 小时在线的 AI 助手\n\n- OpenClaw 支持浏览器、文件系统、Shell、100+ Skills\n- 飞书机器人可以创建会议、管理日程、查通讯录",
+    "url": "https://x.com/Jimmy_JingLv/status/2023749758062559400",
+    "date": "2026-02-17T13:21:56.000Z"
+  },
+  {
+    "authorName": "Tw93",
+    "authorHandle": "@HiTw93",
+    "content": "无意发现了网易一个不错的产品 LobsterAI，一个 7×24 小时帮你干活的全场景个人 Agent。另外，它今天正式宣布开源了。\n\n安装好后在 Telegram 里配了机器人，刚好出门，就全程用手机远程让它去读我电脑上的「潮流周刊」代码仓库，只抓 2025 年的所有内容，目标也明确，帮我挑出年度最推荐的 20",
+    "url": "https://x.com/HiTw93/status/2024346308686000441",
+    "date": "2026-02-19T04:52:25.000Z"
+  },
+  {
+    "authorName": "Orange AI",
+    "authorHandle": "@oran_ge",
+    "content": "工程师们终于发现，自己成了最大的瓶颈\n\n用户上报bug后，AI 完全可以自己写代码和测试\n\n现在所有的流程，创建工单、Slack 协作，Linear 协作，推送代码到 GitHub、运行 CI、审核 PR、合并 PR，全都过时了。\n\n甚至连那个该死的bug都是用户的 Agent 上报的\n\n我们需要改变",
+    "url": "https://x.com/oran_ge/status/2022854268588261573",
+    "date": "2026-02-15T02:03:35.000Z"
+  },
+  {
+    "authorName": "TGweb3",
+    "authorHandle": "@TGweb3333",
+    "content": "这个机器人在6小时内完成了不可能的任务\n\n50美元 → 1960美元\n\n它只在Polymarket上做5分钟级短线交易\n整套策略，全靠一套核心公式支撑\n对数市场评分规则 LMSR：\nC(q) = b · log(∑ exp(q / b))\n\n简单说，它把Polymarket的当前价格，当成最理想的先验概率分布，\n同时实时抓取4个比特币价格数据源，",
+    "url": "https://x.com/TGweb3333/status/2023327749809770849",
+    "date": "2026-02-16T09:25:01.000Z"
+  },
+  {
+    "authorName": "Chao Huang",
+    "authorHandle": "@huang_chao4969",
+    "content": "Introducing ClawWork : Transform your openclaw/nanobot from AI assistant into a money-earning AI coworker. Watch it earn $10K+ in just 7 hours by completing real professional tasks across 44+ industries — from Technology & Engineering to Business & Finance, Healthcare &",
+    "url": "https://x.com/huang_chao4969/status/2023282092042580015",
+    "date": "2026-02-16T06:23:36.000Z"
+  },
+  {
+    "authorName": "松果先森",
+    "authorHandle": "@songguoxiansen",
+    "content": "兄弟们，这种效果的Nano banana pro提示词给你们提取出来了\n\n请叫我一声欧巴\n\n原作者提示词只贴了图\n\nNano banana pro提示词（需上传一张参考图）：\n\n<instruction> (指令)\n分析输入图像的整个构图。识别所有存在的关键主体（无论是单人、群体/情侣、车辆还是特定物体）及其空间关系/互动。",
+    "url": "https://x.com/songguoxiansen/status/1994783047825473774",
+    "date": "2025-11-29T14:58:34.000Z"
+  },
+  {
+    "authorName": "九原客",
+    "authorHandle": "@9hills",
+    "content": "认同这个CLAUDE md 实践，就两条：\n\n1. 保持简短（不超过60行）\n2. 将复杂的指令放到单独目录下，然后在 CLAUDE md 中增加索引（类似于 SKILL 的概念）\n\nhttps://humanlayer.dev/blog/writing-a-good-claude-md…",
+    "url": "https://x.com/9hills/status/1995308023578042844",
+    "date": "2025-12-01T01:44:38.000Z"
+  },
+  {
+    "authorName": "GitHubDaily",
+    "authorHandle": "@GitHub_Daily",
+    "content": "在使用 AI 辅助编程时，最难的往往不是写代码，而是如何让 AI 严格遵守团队已有的工程规范，而不是每次都"随心所欲"地生成代码。\n\n偶然发现 Compounding Engineering Plugin 这个开源项目，它提出了一套非常硬核的 Plan-Work-Review 工程化工作流，旨在让 AI",
+    "url": "https://x.com/GitHub_Daily/status/1994399848087654768",
+    "date": "2025-11-28T13:35:52.000Z"
+  },
+  {
+    "authorName": "Geek",
+    "authorHandle": "@geekbb",
+    "content": "网友整理的 Nano Banana Pro 顶级提示词精选集",
+    "url": "https://x.com/geekbb/status/1994025264746303892",
+    "date": "2025-11-27T12:47:24.000Z"
+  },
+  {
+    "authorName": "GitHubDaily",
+    "authorHandle": "@GitHub_Daily",
+    "content": "Claude Code 发布至今，其出色的编码表现以及交互，相信已有很多开发者将其作为自己主要的开发工具。\n\n但经常重复执行代码审查、性能优化、文档生成等任务，每次都要手动输入详细的指令，颇为麻烦。\n\n凑巧，在 GitHub 上刷到 Claude Code Marketplace 这个由开源社区驱动的命令市场，已汇集了 48",
+    "url": "https://x.com/GitHub_Daily/status/1994254944497795127",
+    "date": "2025-11-28T04:00:04.000Z"
+  }
+]

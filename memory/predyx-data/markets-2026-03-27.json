@@ -1,0 +1,146 @@
+{
+  "timestamp": "2026-03-27T04:31:39.351617",
+  "markets": [
+    {
+      "id": "btc-100k-2026",
+      "question": "Will Bitcoin Reach $100K in 2026",
+      "category": "bitcoin",
+      "liquidity": 43720,
+      "min_liquidity": 5000,
+      "creator": "@0xprey7",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "current_prob": null,
+      "volume": null,
+      "status": "active"
+    },
+    {
+      "id": "btc-60k-90k",
+      "question": "Bitcoin $60,000 or $90,000 first?",
+      "category": "bitcoin",
+      "liquidity": 48290,
+      "min_liquidity": 5000,
+      "creator": "@caveira",
+      "options": [
+        "$60,000",
+        "$90,000"
+      ],
+      "current_prob": null,
+      "volume": null,
+      "status": "active"
+    },
+    {
+      "id": "maxi-madness-nostr",
+      "question": "Matt Odell wins Maxi Madness on Nostr?",
+      "category": "maxi_madness",
+      "liquidity": 1260000,
+      "min_liquidity": 250000,
+      "creator": "Unknown",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "current_prob": null,
+      "volume": 70,
+      "status": "active"
+    },
+    {
+      "id": "llm-chess-2028",
+      "question": "LLM beats chess super grandmaster by 2028?",
+      "category": "ai",
+      "liquidity": 26920,
+      "min_liquidity": 10000,
+      "creator": "Unknown",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "current_prob": null,
+      "volume": 22,
+      "status": "active"
+    }
+  ],
+  "analysis": {
+    "total_markets": 4,
+    "total_liquidity_sats": 1378930,
+    "categories": {
+      "bitcoin": {
+        "count": 2,
+        "total_liquidity": 92010
+      },
+      "maxi_madness": {
+        "count": 1,
+        "total_liquidity": 1260000
+      },
+      "ai": {
+        "count": 1,
+        "total_liquidity": 26920
+      }
+    },
+    "top_liquidity": [
+      {
+        "id": "maxi-madness-nostr",
+        "question": "Matt Odell wins Maxi Madness on Nostr?",
+        "category": "maxi_madness",
+        "liquidity": 1260000,
+        "min_liquidity": 250000,
+        "creator": "Unknown",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "current_prob": null,
+        "volume": 70,
+        "status": "active"
+      },
+      {
+        "id": "btc-60k-90k",
+        "question": "Bitcoin $60,000 or $90,000 first?",
+        "category": "bitcoin",
+        "liquidity": 48290,
+        "min_liquidity": 5000,
+        "creator": "@caveira",
+        "options": [
+          "$60,000",
+          "$90,000"
+        ],
+        "current_prob": null,
+        "volume": null,
+        "status": "active"
+      },
+      {
+        "id": "btc-100k-2026",
+        "question": "Will Bitcoin Reach $100K in 2026",
+        "category": "bitcoin",
+        "liquidity": 43720,
+        "min_liquidity": 5000,
+        "creator": "@0xprey7",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "current_prob": null,
+        "volume": null,
+        "status": "active"
+      },
+      {
+        "id": "llm-chess-2028",
+        "question": "LLM beats chess super grandmaster by 2028?",
+        "category": "ai",
+        "liquidity": 26920,
+        "min_liquidity": 10000,
+        "creator": "Unknown",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "current_prob": null,
+        "volume": 22,
+        "status": "active"
+      }
+    ],
+    "emerging_trends": []
+  }
+}
